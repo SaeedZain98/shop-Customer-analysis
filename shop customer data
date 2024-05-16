@@ -1,0 +1,61 @@
+-- Comparison between the number of customer based on the gender 
+select 
+Gender,
+count(*) as num_of_customers 
+from `rugged-courier-418011.shop.customer_data`
+group by Gender 
+order by count(*) desc 
+-- number of customer based on the age group 
+select
+case
+when Age >= 50 then 'Old'
+when Age >= 25 then 'Mature'
+when Age >= 15 then 'Youth' 
+else 'child' 
+end as Age_group,
+count(*) as num_of_customers 
+from `rugged-courier-418011.shop.customer_data`
+group by Age_group 
+order by count(*) desc 
+-- the number of male customer based on profession 
+select 
+Profession,
+count(*) as num_of_customers 
+from `rugged-courier-418011.shop.customer_data`
+where Gender = 'Male'
+group by Profession
+order by count(*) desc 
+-- the number of female customers based on profession 
+select 
+Profession,
+count(*) as num_of_customers 
+from `rugged-courier-418011.shop.customer_data`
+where Gender = 'Female'
+group by Profession
+order by count(*) desc 
+-- the sum of annual income for male and female customers
+select 
+Gender,
+sum(Annual_Income____) AS sum_of_annual_income
+from `rugged-courier-418011.shop.customer_data`
+group by Gender 
+order by sum_of_annual_income desc 
+-- the average of spending score for male and female customers 
+select
+Gender,
+avg(Spending_Score__1_100_) as average_spending_score
+from `rugged-courier-418011.shop.customer_data`
+group by Gender 
+order by average_spending_score desc 
+-- the average spending score based on the age group 
+select
+case
+when Age >= 50 then 'Old'
+when Age >= 25 then 'Mature'
+when Age >= 15 then 'Youth' 
+else 'child' 
+end as Age_group,
+avg(Spending_Score__1_100_) as average_spending_score
+from `rugged-courier-418011.shop.customer_data`
+group by Age_group 
+order by average_spending_score desc 
